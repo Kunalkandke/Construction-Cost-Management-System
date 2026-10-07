@@ -1,0 +1,5 @@
+{
+  "houseType": "PLOT_HOUSE", "floors": "G+1", "bhk": 2, "bhkMode": "WHOLE_HOUSE", "builtUpAreaSqm": 120,
+  "areaBasis": "PER_FLOOR", "qualityTier": "STANDARD", "locationId": "00000000-0000-4000-8000-000000000001",
+  "structureType": "RCC_FRAME", "addons": [], "includeSoftCosts": false, "includeGst": false
+}
