@@ -23,8 +23,11 @@ export function createApp() {
 
   app.use((req, res, next) => { req.id = uuid(); res.setHeader('X-Request-Id', req.id); next(); });
   app.use(helmet());
+  // Allow exact origins from CLIENT_ORIGIN env var, plus any Vercel preview deployments
+  // for the same project (pattern: https://<project>-<hash>.vercel.app)
+  const vercelPreviewRe = /^https:\/\/construction-cost-management-system-[a-z0-9]+\.vercel\.app$/;
   app.use(cors({
-    origin: (origin, cb) => (!origin || env.clientOrigins.includes(origin) ? cb(null, true) : cb(null, false)),
+    origin: (origin, cb) => (!origin || env.clientOrigins.includes(origin) || vercelPreviewRe.test(origin) ? cb(null, true) : cb(null, false)),
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
